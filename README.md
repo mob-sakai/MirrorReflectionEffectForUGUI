@@ -2,6 +2,7 @@ MirrorReflectionEffectForUGUI
 ===
 
 ### NOTE: This project *will be* merged to [UIEffect](https://github.com/mob-sakai/UIEffect).
+### This project is an experimental phase. Please give me ideas for better effects!
 
 A simple mirror reflection effect for a uGUI without reflection probes or shaders.
 
