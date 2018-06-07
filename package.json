@@ -1,10 +1,10 @@
 {
-  "name": "ReflectEffectForUGUI",
-  "version": "0.0.0",
+  "name": "MirrorReflectionEffectForUGUI",
+  "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mob-sakai/ReflectEffectForUGUI.git"
+    "url": "git+https://github.com/mob-sakai/MirrorReflectionEffectForUGUI.git"
   },
-  "src": "Assets/Coffee/UIExtensions/UIEffect",
+  "src": "Assets/Coffee/UIExtensions/MirrorReflectionEffectForUGUI",
   "license": "MIT"
 }
