@@ -11,7 +11,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: Coffee
-  productName: ReflectEffectForUGUI
+  productName: MirrorReflectionEffectForUGUI
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21176471, a: 1}
@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.coffee.reflecteffectforugui
+  bundleIdentifier: com.coffee.reflect
   bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
@@ -398,14 +398,14 @@ PlayerSettings:
   additionalIl2CppArgs: 
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: ReflectEffectForUGUI
+  metroPackageName: MirrorReflectionEffectForUGUI
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: ReflectEffectForUGUI
+  metroApplicationDescription: MirrorReflectionEffectForUGUI
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 
@@ -476,6 +476,6 @@ PlayerSettings:
     Build: 1
     UNet: 1
   cloudProjectId: 9c73f463-d463-4a0a-b60d-c348116f2a23
-  projectName: ReflectEffectForUGUI
+  projectName: MirrorReflectionEffectForUGUI
   organizationId: mob-sakai
   cloudEnabled: 0
