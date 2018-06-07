@@ -29,6 +29,9 @@ This effect modifies UIVertices but does not require reflection probes or shader
 ![](https://user-images.githubusercontent.com/12690315/41038132-429a2444-69d0-11e8-88a0-59445afdf297.gif)
 ![](https://user-images.githubusercontent.com/12690315/41037821-5d656028-69cf-11e8-897f-46aa64870bc5.gif)
 
+Only 1 GameObject.  
+![](https://user-images.githubusercontent.com/12690315/41101449-22d8be48-6a9f-11e8-82b8-ec0ce03212ef.png)
+
 
 <br><br><br><br>
 ## Demo
