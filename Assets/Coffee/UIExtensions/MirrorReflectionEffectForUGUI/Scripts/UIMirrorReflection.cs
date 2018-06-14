@@ -112,29 +112,33 @@ namespace Coffee.UIExtensions
 			outputVerts.Clear();
 
 			vh.GetUIVertexStream(inputVerts);
+			Debug.LogFormat ("inputVerts={0}, currentVertCount={1}, currentIndexCount={2}", inputVerts.Count, vh.currentVertCount, vh.currentIndexCount);
 
-			for (int i = 0; i < inputVerts.Count; i += 6)
-			{
-				if (graphic is Text)
-				{
-					quad[0] = inputVerts[i + 4];	// bottom-left
-					quad[1] = inputVerts[i + 0];	// top-left
-					quad[2] = inputVerts[i + 1];	// top-right
-					quad[3] = inputVerts[i + 2];	// bottom-right
-				}
-				else
-				{
-					quad[0] = inputVerts[i + 0];	// bottom-left
-					quad[1] = inputVerts[i + 1];	// top-left
-					quad[2] = inputVerts[i + 2];	// top-right
-					quad[3] = inputVerts[i + 4];	// bottom-right
-				}
-				UIVertexUtil.AddQuadToStream(quad, outputVerts);	// origin quad
-				AddMirrorReflectedQuad(quad, outputVerts);	// reflected quad
-			}
+//			for (int i = 0; i < inputVerts.Count; i += 6)
+//			{
+//				if (graphic is Text)
+//				{
+//					quad[0] = inputVerts[i + 4];	// bottom-left
+//					quad[1] = inputVerts[i + 0];	// top-left
+//					quad[2] = inputVerts[i + 1];	// top-right
+//					quad[3] = inputVerts[i + 2];	// bottom-right
+//				}
+//				else
+//				{
+//					quad[0] = inputVerts[i + 0];	// bottom-left
+//					quad[1] = inputVerts[i + 1];	// top-left
+//					quad[2] = inputVerts[i + 2];	// top-right
+//					quad[3] = inputVerts[i + 4];	// bottom-right
+//				}
+//
+//
+//				UIVertexUtil.AddQuadToStream(quad, outputVerts);	// origin quad
+//				AddMirrorReflectedQuad(quad, outputVerts);	// reflected quad
+//			}
 
-			vh.Clear();
-			vh.AddUIVertexTriangleStream(outputVerts);
+//			vh.Clear();
+//			vh.AddUIVertexTriangleStream(inputVerts);
+//			Debug.LogFormat ("inputVerts={0}, currentVertCount={1}, currentIndexCount={2}", inputVerts.Count, vh.currentVertCount, vh.currentIndexCount);
 
 			inputVerts.Clear();
 			outputVerts.Clear();
@@ -161,49 +165,6 @@ namespace Coffee.UIExtensions
 			UIVertex v3 = quad[3];	// bottom-right
 
 			var t = graphic.rectTransform;
-//			var matrix =Matrix4x4.TRS (Vector3.zero, Quaternion.identity, Vector3.one);
-//			var matrix = Matrix4x4.TRS (new Vector3(0, -_rect.height-m_Spacing), Quaternion.identity, new Vector3(1,-1,1));
-
-			var lm = Matrix4x4.TRS (t.localPosition, t.localRotation, t.localScale);
-
-			var matrix = Matrix4x4.TRS (Vector3.zero, Quaternion.identity, new Vector3(1,-1,1));
-
-			matrix = Matrix4x4.TRS (new Vector3(0, -_rect.height-m_Spacing), Quaternion.identity, new Vector3(1,-1,1));
-
-			var rot = Quaternion.Euler (-t.parent.rotation.eulerAngles);
-			var rot2 = Quaternion.Euler (-t.localRotation.eulerAngles);
-			var rot3 = Quaternion.Euler (t.localRotation.eulerAngles);
-
-			var matrix2 =Matrix4x4.TRS (Vector3.zero, t.rotation, Vector3.one);
-
-
-//			quad[0].position = matrix2.MultiplyPoint3x4(rot * matrix.MultiplyPoint3x4((quad[0].position)));
-//			quad[1].position = matrix2.MultiplyPoint3x4(rot * matrix.MultiplyPoint3x4((quad[1].position)));
-//			quad[2].position = matrix2.MultiplyPoint3x4(rot * matrix.MultiplyPoint3x4((quad[2].position)));
-//			quad[3].position = matrix2.MultiplyPoint3x4(rot * matrix.MultiplyPoint3x4((quad[3].position)));
-
-//			quad[0].position = (matrix.MultiplyPoint3x4(rot2*rot * (quad[0].position)));
-//			quad[1].position = (matrix.MultiplyPoint3x4(rot2*rot * (quad[1].position)));
-//			quad[2].position = (matrix.MultiplyPoint3x4(rot2*rot * (quad[2].position)));
-//			quad[3].position = (matrix.MultiplyPoint3x4(rot2*rot * (quad[3].position)));
-
-//			var matrix = t.localToWorldMatrix.inverse
-//				* Matrix4x4.TRS (t.position, Quaternion.identity, t.lossyScale);
-
-//			var matrix = Matrix4x4.TRS (t.localPosition, t.localRotation, t.localScale).inverse
-//				* Matrix4x4.TRS (t.localPosition, Quaternion.identity, t.localScale);
-
-//			var matrix = Matrix4x4.TRS (new Vector3(0, -_rect.height-m_Spacing), Quaternion.identity, new Vector3(1,-1,1));
-
-
-			// Reverse quad index.
-//			quad[0].position = rot2*matrix.MultiplyPoint3x4(lm.MultiplyPoint3x4(rot3*lm.inverse.MultiplyPoint3x4(quad[0].position)));
-//			quad[1].position = rot2*matrix.MultiplyPoint3x4(lm.MultiplyPoint3x4(rot3*lm.inverse.MultiplyPoint3x4(quad[1].position)));
-//			quad[2].position = rot2*matrix.MultiplyPoint3x4(lm.MultiplyPoint3x4(rot3*lm.inverse.MultiplyPoint3x4(quad[2].position)));
-//			quad[3].position = rot2*matrix.MultiplyPoint3x4(lm.MultiplyPoint3x4(rot3*lm.inverse.MultiplyPoint3x4(quad[3].position)));
-
-			matrix =Matrix4x4.TRS (new Vector3(0, -_rect.height-m_Spacing), Quaternion.identity, new Vector3(1,-1,1));
-
 			var vecs = new Vector3[4];
 			t.GetWorldCorners (vecs);
 			var worldY = t.position.y - t.rect.height * t.lossyScale.y * t.pivot.y * 2;
@@ -214,21 +175,11 @@ namespace Coffee.UIExtensions
 			var eul = -t.rotation.eulerAngles;
 			eul.y *= -1;
 
-			matrix = Matrix4x4.identity
-				*
-				Matrix4x4.TRS (t.position, t.rotation, t.lossyScale).inverse
+			var matrix = Matrix4x4.TRS (t.position, t.rotation, t.lossyScale).inverse
 				*
 				Matrix4x4.TRS (new Vector3(t.position.x, worldY, t.position.z), Quaternion.Euler (eul), scale)
 				;
 			
-
-
-			var lwm = t.localToWorldMatrix;
-			var wlm = t.worldToLocalMatrix;
-
-//			// Add reflected quad.
-//			UIVertexUtil.AddQuadToStream(quad, result);
-//			return;
 
 			var minY = Mathf.Min (
 				Mathf.Min (quad[0].position.y, quad[1].position.y),
